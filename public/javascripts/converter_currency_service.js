@@ -2,14 +2,14 @@ ang.service('currency_converter',function($http,$q){
 
 	that = this;
 	that.currencies = 'USD,AUD,CAD,PLN,GBP';
-	that.currenciesRate  = {};
+	that.currenciesRate  = [];
 
 	//execute this once is ready to be loaded; 
  	that.data = (function() {
  						
  						// set promose 
  						var deferred = $q.defer();
- 						var currenciesArray = that.currencies.split(",");
+ 						currenciesArray = that.currencies.split(",");
 				 		$http({
 						        url:"http://apilayer.net/api/live",
 						        params:{
@@ -27,8 +27,9 @@ ang.service('currency_converter',function($http,$q){
 				      		//populate that.currenciesRate object;
 				      		Object.keys(response.data.quotes).forEach(function(value,key) {
 
-				            	//that.currenciesRate[key] = {};
-				            	that.currenciesRate[ currenciesArray[key] ] = response.data.quotes[value];
+				            	that.currenciesRate[key] = {};
+				            	that.currenciesRate[key].currency = currenciesArray[key];
+				            	that.currenciesRate[key].currencyValue = response.data.quotes[value];
 
 				            });
 				             
@@ -41,14 +42,14 @@ ang.service('currency_converter',function($http,$q){
 
     
 
-    that.convert = function(value,currency){
+    that.convert = function(value){
 
-    			console.log( that.currenciesRate[ currency] );
-    			var picked_currency = that.currenciesRate[currency];
+    			console.log( value );
+    			//var picked_currency = that.currenciesRate[currency];
 
 
 
-    			return value * picked_currency;
+    			return value;
 
    	};
 

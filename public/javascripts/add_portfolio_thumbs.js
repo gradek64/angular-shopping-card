@@ -12,12 +12,15 @@
 
 					dataToSentLigthbox.data[index] = {};
 					dataToSentLigthbox.data[index].id = index;
+					//by default you want 1 quatinty of product (not in JSON for clarity);
+					dataToSentLigthbox.data[index].qty = 1;
 					dataToSentLigthbox.data[index].description = item.description;
 					dataToSentLigthbox.data[index].thumbnail = item.thumbnail;
 					dataToSentLigthbox.data[index].campaignName = item.name;
 					dataToSentLigthbox.data[index].iframe_source = item.iframe_source;
 					dataToSentLigthbox.data[index].iframe_ratio = item.iframe_ratio;
 					dataToSentLigthbox.data[index].technology = item.technology;
+					dataToSentLigthbox.data[index].price = item.price;
 					dataToSentLigthbox.data[index].sector = item.sector;
 
 					if(index==responseArrayData.length-1){

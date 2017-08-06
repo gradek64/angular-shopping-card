@@ -1,10 +1,10 @@
- ang.directive('basketCheckout', function(getJSON,currency_converter) {
+ ang.directive('basketCheckout', function(getJSON,currency_converter) { //angular will wait for all service to be loaded synchronicly
 
     return {
 			      	restrict: 'E',
 				    scope: {
 
-				    	updateBasketIcon:"@" //one way only 
+				    	flavor: "="
 				    },
 			        templateUrl:"javascripts/js_templates/portfolio_lightbox_info.html",
 					controller:function ($scope,$rootScope,$window,$compile,$element) {
@@ -13,9 +13,8 @@
 
 
 						setTimeout(function() {
-							console.log(currency_converter.convert(2,"PLN"));
+							//console.log(currency_converter.convert(2,"PLN"));
 						}, 2000);
-
 
 
 
@@ -24,8 +23,8 @@
 						//listen for the GET request from getJSON service in thumbs directive;
 						var listenerJSON = $scope.$on('sendJSON_data', function (event, args) {
 								port.JSON_data= args.lightboxJSON.data;
-								console.log('port.JSON_data');
-								console.log(port.JSON_data);
+								/*console.log('port.JSON_data');
+								console.log(port.JSON_data);*/
 								
 						});
 
@@ -35,14 +34,19 @@
 						});
 
 
+
+
+
+
+
+							 //update currenceis from the external service and convert to array for ng-repeat;
+							 port.currenciesRate = currency_converter.currenciesRate;
+
+									    console.log('port.currenciesRate');
+									    console.log(port.currenciesRate);
 						
 
-
-
-
-						
-
-
+						$scope.flavor = 0;
 
 						var showLightbox = function(param) {
 
@@ -54,22 +58,42 @@
 								 		//port.top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 								 	}
 
-
+						
 
 								 	//if(angular.element('iframe')){ angular.element('iframe').remove(); }
-							            
-							            port.description = $scope.JSON_data[port.thumb_id].description;
-									    port.campaignName = $scope.JSON_data[port.thumb_id].campaignName;
-									    port.iframe_source = $scope.JSON_data[port.thumb_id].iframe_source;
-									    port.iframe_ratio = $scope.JSON_data[port.thumb_id].iframe_ratio;
-									    port.technology = $scope.JSON_data[port.thumb_id].technology;
-									    port.sector = $scope.JSON_data[port.thumb_id].sector;
-									    //basket itesm 
+							            //param.lightbox.items
+							            /*port.description = param.lightbox.items[port.thumb_id].description;
+									    port.campaignName = param.lightbox.items[port.thumb_id].campaignName;
+									    port.iframe_source = param.lightbox.items[port.thumb_id].iframe_source;
+									    port.iframe_ratio = param.lightbox.items[port.thumb_id].iframe_ratio;
+									    port.technology = param.lightbox.items[port.thumb_id].technology;
+									    port.sector = param.lightbox.items[port.thumb_id].sector;
+									    port.price = param.lightbox.items[port.thumb_id].price;
+									   */
+
+
+
+
+									    //basket items (the one chosen)
 									    port.items = param.lightbox.items;
+									    console.log('port.directiveValue');
+									    console.log(port.directiveValue);
+
+									    //attached prices to conveter;
+									    for (index in port.items){
+
+									    	port.items[index].orginalPrice = port.items[index].price;
+
+									    	console.log('port.items[index].price');
+									    	console.log(port.items[index].price);
+									    }
 
 
-									    console.log('params from controller');
-									    console.log(param);
+									    $scope.flavor = port.items.length;
+
+
+
+
 
 
 									    //remove and calculate fiddle link 
@@ -101,8 +125,46 @@
 
 						port.removeItem = function(index) {
 						        port.items.splice(index, 1);
-						        port.updateBasketIcon = port.items.length;
+						        port.flavor= port.items.length;
 						};
+
+						port.total = function(index) {
+						      var total = 0;
+						      angular.forEach(port.items, function(item) {
+
+						      		/*console.log('item.qty')
+						      		console.log(item.qty)
+						      		console.log('item.price')
+						      		console.log(item.price)*/
+
+
+						          total += item.qty * item.price;
+						      })
+
+						      return total;
+						  }
+
+
+						//it convert for the selected one that is why you need index of param.lightbox.items
+						port.convertCurrency = function(value){
+
+							//convert stirng to array baseed on **
+							//var figures = value.split('**');
+
+
+
+							//var total = 0;
+						      angular.forEach(port.items, function(item,key) {
+						      	console.log(value);
+
+						          item.price = item.orginalPrice*value;
+						      })
+
+						      //return total;
+
+							//port.items[ 0 ] = figures[0] * figures[1];
+
+						}
 
 						// Unregister custom event
 						$scope.$on('$destroy', function () {

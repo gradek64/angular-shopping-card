@@ -114,18 +114,47 @@
 					       				<!-- <div class="arrow col-sm-2"><img src="images/arrow_right.png" /></div> -->
 									</div>
 
+									     		  <div>
+									     		  	<p>basket {{ flavor }}</p>
+									     		  	<p>change currency</p>
+									     		  	<label for="repeatSelect"> Repeat select: </label>
+													 <!-- ng-change="convertCurrency(currenciesRate|filter:{currency:scope_currencyValue})[0].currency)"> -->
+									     		  <!-- 	<select 
+									     		  	     ng-model="$index" 
+									     		  	     ng-options="item.currencyValue as item.currency for item in currenciesRate" 
+									     		  	    
+									     		  	     ng-change="changedValue($event)">
+									     		  	   </select> -->
+
+
+									     		  	    <select name="repeatSelect" id="repeatSelect" ng-model="scope_currencyValue" ng-change="convertCurrency(scope_currencyValue)">
+									     		  	    <option ng-repeat="currency in currenciesRate" value="{{currency.currencyValue}}"><!--value="{{currency.currencyValue}}**{{item.price}}**{{$index}}"-->{{currency.currency}}</option>
+									     		  	</select>
+													<p>multipleSelect = {{scope_currencyValue}}</p><br/>
+													<p>total:</p><span>{{  total() }}</span>
+									     		  </div>
+
 
 								<!-- baseket items -->
 								<div class="col-sm-12">
-									      <div class="col-md-3 offset-md-1" ng-repeat="item in items track by $index">
+									      <div class="col-md-9 offset-md-3" ng-repeat="item in items track by $index">
 									              <div class="panel panel-primary"> <!-- style="display: inline-block;" -->
 									                <div class="panel-body thumb"  ><!--ng-click="changeClass($index,$event)" -->
 									                			<img src="{{item.thumbnail}}" />
 									     			</div>
 									     		  </div>
+									     		  <div>
+													<input type="number" ng-model="item.qty"  class="input-mini" >
+													<p>price:</p><span>{{item.price}}</span>
+													<p>ga {{item.qty * item.price }}</p>
+									     		  </div>
+									     		 
 									     		  [<a href ng-click="removeItem($index)">----X-----</a>]
 										   </div>
 								</div>		
+
+								<h3 class="text-warning">Total</h3>
+								<p>{{description}}</p>
 
 								<h3 class="text-warning">Description</h3>
 								<p>{{description}}</p>

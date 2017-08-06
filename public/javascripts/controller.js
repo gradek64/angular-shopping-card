@@ -44,7 +44,7 @@ ang.controller('myCTRL',function($scope,$rootScope,currency_converter){
  		};
 
  		//$scope.updateBasketIconMain
-
+ 		$scope.ctrlFlavor = 0;
 
  		$scope.add_item_to_basket_main = function(message) {
 
@@ -53,7 +53,7 @@ ang.controller('myCTRL',function($scope,$rootScope,currency_converter){
  			items_session.push(message);
 
  			//$scope.basketItems = items_selected.items.length;
- 			$scope.basketItems = items_session.length;
+ 			$scope.ctrlFlavor = items_session.length;
 
  		}
 
