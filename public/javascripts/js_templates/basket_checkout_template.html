@@ -59,36 +59,30 @@
 <div class="lightbox" ></div>
 		<div class="lightboxContent  overlay-content">
 			<div class="container-fluid jumbotron " style="width: 60%;margin:30px auto;background-color: white;border: 1px solid grey;">
-		     		
-		     			
-		     			  
-		     		
+
 				       		<div class="row" >
-
-
-
 								<h3 class="border">Your Basket</h3>
-								<!-- baseket items -->
+								<!-- basket dir_items -->
 								<div class="col-sm-12">
-								      <div class="col-md-12 offset-md-3" ng-repeat="item in items track by $index">
+								      <div class="col-md-12 offset-md-3" ng-repeat="dir_item in dir_items track by $index">
 					                	<div class="basket_thumb col-md-12 border">
 					                			<div class="row">
 					                				<div class="col-sm-6">
-					                					<h4>{{item.product_name}}</h4>
+					                					<h4>{{dir_item.product_name}}</h4>
 					                				</div>
 					                				<div class="col-sm-6">
-					                					<h4>how many ?  <input type="number" ng-model="item.qty"  class="input-mini" ></h4>
+					                					<h4>how many ?  <input type="number" ng-model="dir_item.qty"  class="input-mini" ></h4>
 					                				</div>
 					                			</div>
 					                			<div class="row">
 
 						                				<div class=" col-md-2">
-						                					<img src="{{item.thumbnail}}" />
+						                					<img src="{{dir_item.thumbnail}}" />
 						                				</div>
 
 							                			<div class="col-md-10">
 							                				
-							                				<h4><span style="float:right">{{item.qty * item.price }};</span></h4>
+							                				<h4><span style="float:right">{{ showQuantity($index) }}</span></h4>
 							    						</div>
 						    					</div>
 						    					<p class="offset-md-3"><a ng-click="removeItem($index)" class="btn btn-danger btn-xs" >Remove X</a> </p>  
@@ -102,23 +96,18 @@
 											    					<div class=" col-md-9">
 												    					<form class="form-inline" style="float:right;">
 			  																<div class="form-group">
-												                				Change currency
-														     		 			<select name="repeatSelect" id="repeatSelect" ng-model="scope_currencyValue" ng-change="convertCurrency(scope_currencyValue)">
-														     		  	    	<option ng-repeat="currency in currenciesRate" value="{{currency.currencyValue}}"><!--value="{{currency.currencyValue}}**{{item.price}}**{{$index}}"-->{{currency.currency}}</option>
-														     		  			</select>
+												                				Change currency <select  ng-options="opt.currencyValue as opt.currency for opt in currenciesRate" ng-model="defaultCurrency" ng-change="convertCurrency(defaultCurrency)"></select>
 												                			</div>
 												                		</form>
 												                	</div>
 			
-												                			<div class="col-md-3">
-												                				<h2><span style="float:right;">Total:   {{  total() }}</span></h2>
-												                				
-												    						</div>
-											    					</div>
-											    					<h2><span><button class="btn btn-default col-sm-1 pull-right margin-bottom-5" ng-click="closePopUp();">continue shopping</button></span></h2> 
+										                			<div class="col-md-3">
+										                				<h2><span style="float:right;">Total:   {{  total() }} </span></h2>
+										    						</div>
+											    					
+											    					<h2><span><button class="btn btn-default pull-right margin-bottom-5" ng-click="closePopUp();">continue shopping</button></span></h2> 
 								     				    </div>
-									   
-								</div>	
+									</div>	
 
 	
 				      		

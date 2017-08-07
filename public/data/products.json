@@ -5,8 +5,8 @@
         "name": "Baked Beans",
         "thumbnail": "./images/products/can_of_beans.jpg",
         "package": "can",
-        "price": 0.95,
-        "description": "Custom made vertical carousel that presents and loops the latest HM women collection for summer"
+        "price": 0.73,
+        "description": "Baked beans are the must-have toasty breakfast, You can not beat that price"
       },
 
       {
@@ -14,7 +14,7 @@
         "thumbnail": "./images/products/eggs.jpg",
         "package": "dozen",
         "price": 2.10,
-        "description": "Custom animation using HTML5 features with timing and Canvas"
+        "description": "Dozen of eggs will feed you well"
       },
      
       {
@@ -22,14 +22,14 @@
         "thumbnail": "./images/products/peas.jpg",
         "package": ".bag",
         "price": 0.95,
-        "description": "Launching a famous theatre play with some peaks from the stage"
+        "description": "Bag of peas made you green as the planet"
       },
        {
         "name": "Milk",
         "thumbnail": "./images/products/milk.jpg",
         "package": "bottle",
         "price":1.30,
-        "description": "Campaign done for Tourism Canada with custom gallery"
+        "description": "Milk,the essential to go through a life smoothy"
       }
     ]
 

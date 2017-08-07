@@ -9,11 +9,7 @@
 			      controller:function ($scope,$rootScope) {
 
 							    getJSON_products.data(function(jsonback) {
-							    	 $scope.jsonBack = jsonback;
-							    	 $scope.thumbs = jsonback.data;
-
-							    	 //send json to Ligbox so you dont have to request it again 
-							    	 $rootScope.$broadcast('sendJSON_data', { lightboxJSON: jsonback });
+							    	 $scope.products = jsonback.data;
 							    });
 
 			      }

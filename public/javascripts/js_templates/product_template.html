@@ -30,17 +30,17 @@
 </style>
 		<div class="col-md-12">
 				<div class="row">
-					      <div class="col-md-3 offset-md-1" style="margin-top:5%;" ng-repeat="item in thumbs track by $index">
+					      <div class="col-md-3 offset-md-1" style="margin-top:5%;" ng-repeat="item_init in products track by $index">
 					              <div class="panel panel-primary"> 
 					                <div class="panel-body thumb">
-					                			<h3>{{item.product_name}}</h3>
+					                			<h3>{{item_init.product_name}}</h3>
 					                			<div>
-					                				<img src="{{item.thumbnail}}" />
+					                				<img src="{{item_init.thumbnail}}" />
 					                			</div>
-					                			<p>{{item.description}}</p>
-					    							<p class="btn btn-primary offset-md-1" ng-click="basket({message:item})" >add to basket --></p>  
+					                			<p>{{item_init.description}}</p>
+					    							<p class="btn btn-primary offset-md-1" ng-click="basket({message:item_init})" >add to basket --></p>  
 					    						<div class="row">
-					    							<h1 style="float: right;text-align: top">{{item.price}};-</h1>    
+					    							<h1 style="float: right;text-align: top">{{item_init.price}};-</h1>    
 					    						</div>
 					     			</div>
 					     		  </div>

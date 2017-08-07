@@ -3,15 +3,18 @@ ang.controller('myCTRL',function($scope,$rootScope,currency_converter){
 		var items_in_basket = 0;
 		var items_selected = {}
 		var items_session = [];
+		var sendReferenceData = {};
 
  		$scope.checkout = function() {
-			var sendReferenceData = {};
+		
 
   				sendReferenceData.id = 1;
   				sendReferenceData.showFromThumbs = true;
-  				sendReferenceData.items = items_session;
-  				//broadcast event to checkout lighbox
-		      	$rootScope.$broadcast('popUp', { lightbox: sendReferenceData });
+  				sendReferenceData.ctr_items = items_session;
+  				//broadcast event to checkout lighbox when basket is not empty;
+  				if($scope.updateBasketIconMain != 0){
+		      		$scope.$broadcast('popUp', { lightbox: sendReferenceData });
+  				}
  		};
 
  		//$scope.updateBasketIconMain
