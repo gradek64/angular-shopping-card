@@ -1,0 +1,37 @@
+{
+  "products": {
+    "deals": [
+      {
+        "name": "Baked Beans",
+        "thumbnail": "./images/products/can_of_beans.jpg",
+        "package": "can",
+        "price": 0.95,
+        "description": "Custom made vertical carousel that presents and loops the latest HM women collection for summer"
+      },
+
+      {
+        "name": "Dozen of eggs",
+        "thumbnail": "./images/products/eggs.jpg",
+        "package": "dozen",
+        "price": 2.10,
+        "description": "Custom animation using HTML5 features with timing and Canvas"
+      },
+     
+      {
+        "name": "Bag of peas",
+        "thumbnail": "./images/products/peas.jpg",
+        "package": ".bag",
+        "price": 0.95,
+        "description": "Launching a famous theatre play with some peaks from the stage"
+      },
+       {
+        "name": "Milk",
+        "thumbnail": "./images/products/milk.jpg",
+        "package": "bottle",
+        "price":1.30,
+        "description": "Campaign done for Tourism Canada with custom gallery"
+      }
+    ]
+
+  }
+}

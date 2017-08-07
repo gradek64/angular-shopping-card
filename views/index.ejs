@@ -7,6 +7,27 @@
        <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.css">
        <!--   cdn bootstrap font awesome -->  
        <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+       <style>
+	
+			.fa_custom {
+				color: #0099CC
+				}
+			span.step {
+			  background: #cccccc;
+			  border-radius: 0.8em;
+			  -moz-border-radius: 0.8em;
+			  -webkit-border-radius: 0.8em;
+			  color: #ffffff;
+			  display: inline-block;
+			  font-weight: bold;
+			  line-height: 1.6em;
+			  margin-right: 5px;
+			  text-align: center;
+			  width: 1.6em; 
+			}
+
+       </style>
   </head>
   <body ng-app="thumbs-module" ng-controller="myCTRL">
     <div >
@@ -22,45 +43,35 @@
 	      </button>
 	      <a class="navbar-brand" href="#">Brand</a>
 	    </div>
-
-	 
-	      <ul class="nav navbar-nav navbar-right">
-
-						<a><div id="basket-icon" ng-click="checkout();">basket icon click me</div><span>number {{ctrlFlavor}}</span></a>
+	      <ul class="navbar-right" ng-click="checkout();">	
+	      				<li>
+								<div id="basket-icon">your Basket</div><i class="fa-shopping-cart fa fa_custom fa-shopping-cart fa-5x" aria-hidden="true"></i><span class="step">{{updateBasketIconMain}}</span></div>
+	      				</li>
 	      </ul>
-
-
 	    </div>
 	  </div>
 	</nav>
-
-
-
     </div>
 
-    				<basket-checkout flavor="ctrlFlavor"></basket-checkout>
 
+		<!-- basket directive -->
+		<basket-checkout updatebasketicon="updateBasketIconMain"></basket-checkout>
 
 	<div class="container">
-		
-	<div class="row" ng-cloak  style="border:3px solid #ccc;border-radius:5px;padding-top: 50px;">  
+		<div class="row" ng-cloak  style="border:3px solid #ccc;border-radius:5px;padding-top: 50px;">  
 
-			<div><thumbs  basket="add_item_to_basket_main(message)"></thumbs></div>
+					<h3> Those are your deals of a day </h3>
+						<!-- product directive -->
+					<product  basket="add_item_to_basket_main(message)" ></product>
+
+		</div>
 	</div>
-	</div>
+
 
 
 	<footer>
 	   <!-- jQuery -->
 	   <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-	   <!-- jQuery 
-	   <script src="js/default_login_check.js"></script>-->
-	   <!-- Angular -->
-	   <!-- <script src="//code.angularjs.org/1.4.0/angular.js"></script> -->
-	   <!-- Angular animate library -->
-	   <!-- <script src="js/angular/angular-animate.min.js"></script> -->
-	   <!-- Angular validate messages -->
-
 	   <!--bootrsrap javascript -->
 	   <script type="text/javascript" src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	   <!-- require js -->
@@ -76,11 +87,12 @@
 
 	   <script>var ang = angular.module('thumbs-module', []);</script>
 	   <!-- main for this page-->
+	   <script src="javascripts/converter-currency-service.js"></script>
+	   <script src="javascripts/data-service.js"></script>
 	   <script src="javascripts/controller.js"></script>
-	   <script src="javascripts/converter_currency_service.js"></script>
 	   <script src="javascripts/basket-service.js"></script>
 	   <script src="javascripts/basket-checkout.js"></script>
-	   <script src="javascripts/add_portfolio_thumbs.js"></script>
+	   <script src="javascripts/products-list.js"></script>
 
 	 </footer>
   </body>
